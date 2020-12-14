@@ -25,6 +25,11 @@ discountChecker.on("discount", (pInfo) => {
 	});
 });
 
+bot.hears("/exit 123456987", (ctx) => {
+	ctx.reply("Exit!");
+	process.exit(0);
+});
+
 bot.hears("/status", (ctx) => {
 	ctx.reply("Loading...");
 
