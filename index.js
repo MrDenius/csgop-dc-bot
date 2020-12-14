@@ -45,3 +45,5 @@ bot.hears("/call", (ctx) => {
 discountChecker.Start();
 
 bot.launch(); // запуск бота
+
+console.log("BOT STARTED!");
