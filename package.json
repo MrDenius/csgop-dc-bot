@@ -1,0 +1,16 @@
+{
+  "name": "csgop-dc-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "node-html-parser": "^2.0.0",
+    "telegraf": "^3.38.0"
+  }
+}
