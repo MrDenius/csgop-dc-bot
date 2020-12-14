@@ -55,7 +55,6 @@ module.exports = (() => {
 					EventListerner.emit("discount", pInfo);
 				} else {
 					EventListerner.emit("default", pInfo);
-					console.log(EventListerner);
 				}
 				setTimeout(Worker, interval);
 			});
