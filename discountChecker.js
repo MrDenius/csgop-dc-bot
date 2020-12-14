@@ -15,33 +15,31 @@ module.exports = (() => {
 	 */
 	const GetPriceInfo = () => {
 		return new Promise((resolve, rej) => {
-			Axios.get("https://store.steampowered.com/widget/1490530/").then(
-				(res) => {
-					let doc = parse(res.data);
-					const contener = doc.querySelector(
-						".game_purchase_action_bg"
+			Axios.get(
+				"https://store.steampowered.com/widget/1490530/?cc=ru"
+			).then((res) => {
+				let doc = parse(res.data);
+				const contener = doc.querySelector(".game_purchase_action_bg");
+				const PriceInfo = {};
+
+				const parseInt = (str) => {
+					return Number.parseInt(str.replace(/[^0-9.]/g, ""));
+				};
+
+				if (contener.querySelector(".price") != null) {
+					PriceInfo.price = parseInt(
+						contener.querySelector(".price").innerHTML
 					);
-					const PriceInfo = {};
-
-					const parseInt = (str) => {
-						return Number.parseInt(str.replace(/[^0-9.]/g, ""));
-					};
-
-					if (contener.querySelector(".price") != null) {
-						PriceInfo.price = parseInt(
-							contener.querySelector(".price").innerHTML
-						);
-						PriceInfo.discount = false;
-					} else {
-						PriceInfo.price = parseInt(
-							contener.querySelector(".discount_final_price")
-								.innerHTML
-						);
-						PriceInfo.discount = true;
-					}
-					resolve(PriceInfo);
+					PriceInfo.discount = false;
+				} else {
+					PriceInfo.price = parseInt(
+						contener.querySelector(".discount_final_price")
+							.innerHTML
+					);
+					PriceInfo.discount = true;
 				}
-			);
+				resolve(PriceInfo);
+			});
 		});
 	};
 

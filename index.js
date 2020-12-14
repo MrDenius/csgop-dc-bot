@@ -26,8 +26,8 @@ discountChecker.on("discount", (pInfo) => {
 });
 
 bot.hears("/exit 123456987", (ctx) => {
-	ctx.reply("Exit!");
-	process.exit(0);
+	ctx.reply("Exit in 5 seconds!");
+	setTimeout(() => process.exit(0), 5000);
 });
 
 bot.hears("/status", (ctx) => {
