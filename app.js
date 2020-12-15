@@ -5,7 +5,7 @@ const StartIndex = () => {
 	const index = child_process.spawn("node", ["./index.js"]);
 
 	const conLog = (text, log) => {
-		if (process.env.PORT && text) {
+		if (process.env.PORT && text.trim()) {
 			if (log) log(text);
 			else console.log(text);
 		}
