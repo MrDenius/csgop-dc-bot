@@ -22,7 +22,7 @@ module.exports = (() => {
 	});
 
 	api.Start = (port) => {
-		setTimeout(() => app.listen(port || 80), 0);
+		setTimeout(() => app.listen(port || undefined), 0);
 		console.log("SERVER STARTED!");
 	};
 	api.Data = data;
