@@ -2,6 +2,7 @@ const { default: Axios } = require("axios");
 const { default: parse } = require("node-html-parser");
 const { Telegraf } = require("telegraf");
 const appSettings = require("./appSettings");
+const debugSite = require("./debugSite");
 const discountChecker = require("./discountChecker");
 
 const bot = new Telegraf("1476521215:AAE2aoxWACDCJc2Y62ZyjgPjwzJLXyq9JwU"); //сюда помещается токен, который дал botFather
@@ -47,8 +48,14 @@ bot.hears("/call", (ctx) => {
 	}
 });
 
+debugSite.Data.upTime = 0;
+setInterval(() => {
+	debugSite.Data.upTime++;
+}, 1000);
+
 discountChecker.Start();
 
+debugSite.Start(80); // запуск дебаг серва
 bot.launch(); // запуск бота
 
 console.log("BOT STARTED!");
