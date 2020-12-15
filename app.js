@@ -3,8 +3,8 @@ const child_process = require("child_process");
 const StartIndex = () => {
 	console.log("Starting index.js...");
 	const index = child_process.spawn("node", ["./index.js"]);
-	//index.stdout.on("data", (data) => console.log(data.toString()));
-	//index.stdout.on("error", (data) => console.log(data.toString()));
+	index.stdout.on("data", (data) => console.log(data.toString()));
+	index.stdout.on("error", (data) => console.log(data.toString()));
 
 	let exited = false;
 	const OnExit = (code) => {
