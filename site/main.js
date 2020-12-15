@@ -1,1 +1,1 @@
-document.body.innerHTML = JSON.stringify(`upTime: ${data.upTime}`);
+document.body.innerHTML = JSON.stringify(`upTime: ${data.upTimeFormated}`);

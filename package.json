@@ -2,10 +2,13 @@
 	"name": "csgop-dc-bot",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "app.js",
 	"scripts": {
-		"start": "node index.js",
-		"push": "git add . && git commit -am \"1\" && git push heroku master"
+		"start": "node app.js",
+		"push": "git add . && git commit -am \"1\" && git push heroku master",
+		"logs": "heroku logs -t",
+		"on": "heroku ps:scale web=1",
+		"off": "heroku ps:scale web=0"
 	},
 	"author": "",
 	"license": "ISC",

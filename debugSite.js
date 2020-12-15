@@ -21,6 +21,17 @@ module.exports = (() => {
 		res.sendFile(path.join(__dirname, "/site/styles.css"));
 	});
 
+	const Worker = () => {
+		data.upTime = process.uptime();
+		data.upTimeFormated = `${Math.floor(
+			data.upTime / 60 / 60
+		)}:${Math.floor(Math.floor(data.upTime / 60) % 60)}:${Math.floor(
+			(data.upTime % 60) % 60
+		)}`;
+	};
+
+	setInterval(Worker, 250);
+
 	api.Start = (port) => {
 		setTimeout(() => app.listen(process.env.PORT || port || 80), 0);
 		console.log("SERVER STARTED!");

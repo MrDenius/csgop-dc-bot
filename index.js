@@ -31,11 +31,36 @@ bot.hears("/exit 123456987", (ctx) => {
 	setTimeout(() => process.exit(0), 5000);
 });
 
+bot.command("debug", (ctx) => {
+	let mess = `Up time: ${debugSite.Data.upTimeFormated}\nStatus:\n`;
+
+	discountChecker.GetPriceInfo().then((price) => {
+		if (price) {
+			mess += "🟢";
+		} else {
+			mess += "🔴";
+		}
+		mess += " PriceChecker\n";
+
+		ctx.replyWithMarkdown(mess);
+	});
+});
+
 bot.hears("/status", (ctx) => {
 	ctx.reply("Loading...");
 
 	discountChecker.GetPriceInfo().then((res) => {
-		ctx.reply(res);
+		let mess = `
+Скидк${res.discount ? "а __*есть*__" : "и __*нету*__"}
+Актуальная цена на данный момент: __*${res.price}₽*__\n`;
+
+		mess += `Вы `;
+
+		mess += appSettings.UserExist(ctx.message)
+			? "подписаны на рассылку"
+			: "отписаны от рассылки";
+
+		ctx.replyWithMarkdown(mess, { parse_mode: "MarkdownV2" });
 	});
 });
 bot.hears("/call", (ctx) => {
@@ -47,11 +72,6 @@ bot.hears("/call", (ctx) => {
 		ctx.reply("Вы добавленны в рассылку!");
 	}
 });
-
-debugSite.Data.upTime = 0;
-setInterval(() => {
-	debugSite.Data.upTime++;
-}, 1000);
 
 discountChecker.Start();
 
