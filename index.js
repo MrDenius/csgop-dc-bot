@@ -55,7 +55,7 @@ setInterval(() => {
 
 discountChecker.Start();
 
-debugSite.Start(80); // запуск дебаг серва
+debugSite.Start(443); // запуск дебаг серва
 bot.launch(); // запуск бота
 
 console.log("BOT STARTED!");
