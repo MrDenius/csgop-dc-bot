@@ -1,3 +1,4 @@
+const { default: Axios } = require("axios");
 const express = require("express");
 const path = require("path");
 
@@ -30,7 +31,14 @@ module.exports = (() => {
 		)}`;
 	};
 
+	const AntiIdling = () => {
+		Axios.get("https://csgop-dc-bot.herokuapp.com/").then(() =>
+			console.log("Anti Idling success")
+		);
+	};
+
 	setInterval(Worker, 250);
+	if (process.env.PORT) setInterval(AntiIdling, 30000);
 
 	api.Start = (port) => {
 		setTimeout(() => app.listen(process.env.PORT || port || 80), 0);
