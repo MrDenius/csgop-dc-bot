@@ -38,7 +38,7 @@ module.exports = (() => {
 	};
 
 	setInterval(Worker, 250);
-	if (process.env.PORT) setInterval(AntiIdling, 60000);
+	if (process.env.PORT) setInterval(AntiIdling, 120000);
 
 	api.Start = (port) => {
 		setTimeout(() => app.listen(process.env.PORT || port || 80), 0);
