@@ -32,9 +32,9 @@ module.exports = (() => {
 	};
 
 	const AntiIdling = () => {
-		Axios.get("https://csgop-dc-bot.herokuapp.com/").then(() =>
-			console.log("Anti Idling success")
-		);
+		Axios.get("https://csgop-dc-bot.herokuapp.com/")
+			.then(() => console.log("Anti Idling success"))
+			.catch((res) => console.error(`Error Anti Idling: ${res}`));
 	};
 
 	setInterval(Worker, 250);
